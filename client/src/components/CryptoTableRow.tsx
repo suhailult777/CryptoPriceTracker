@@ -52,11 +52,11 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
   const fallbackLogoUrl = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/generic.svg`;
   
   return (
-    <tr className="crypto-row hover:bg-neutral-100/50" data-id={crypto.id}>
-      <td className="py-4 pl-4 pr-3 whitespace-nowrap sticky left-0 bg-white z-10 hover:bg-neutral-100/50">
+    <tr className="crypto-row" data-id={crypto.id}>
+      <td>
         <button
           onClick={handleToggleStar}
-          className="star-button text-lg focus:outline-none"
+          className="star-button focus:outline-none"
           aria-label={crypto.starred ? "Remove from favorites" : "Add to favorites"}
         >
           <Star 
@@ -65,10 +65,10 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
           />
         </button>
       </td>
-      <td className="py-4 px-3 whitespace-nowrap text-sm">
+      <td>
         {crypto.rank}
       </td>
-      <td className="py-4 px-3 whitespace-nowrap">
+      <td>
         <div className="flex items-center">
           <img 
             src={logoUrl} 
@@ -80,40 +80,40 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
           />
           <div>
             <div className="font-medium">{crypto.name}</div>
-            <div className="text-neutral-300 text-sm">{crypto.symbol}</div>
+            <div className="text-xs text-gray-500">{crypto.symbol}</div>
           </div>
         </div>
       </td>
-      <td className={`py-4 px-3 whitespace-nowrap text-right font-medium font-mono ${getPriceFlashClass()}`} data-field="price">
+      <td className={`text-right font-medium ${getPriceFlashClass()}`} data-field="price">
         {formatCurrency(crypto.price)}
       </td>
-      <td className={`py-4 px-3 whitespace-nowrap text-right font-mono ${percent1h.className}`} data-field="percentChange1h">
+      <td className={`text-right ${percent1h.className}`} data-field="percentChange1h">
         {percent1h.value}
       </td>
-      <td className={`py-4 px-3 whitespace-nowrap text-right font-mono ${percent24h.className}`} data-field="percentChange24h">
+      <td className={`text-right ${percent24h.className}`} data-field="percentChange24h">
         {percent24h.value}
       </td>
-      <td className={`py-4 px-3 whitespace-nowrap text-right font-mono ${percent7d.className}`} data-field="percentChange7d">
+      <td className={`text-right ${percent7d.className}`} data-field="percentChange7d">
         {percent7d.value}
       </td>
-      <td className="py-4 px-3 whitespace-nowrap text-right font-mono" data-field="marketCap">
+      <td className="text-right" data-field="marketCap">
         {formatCurrency(crypto.marketCap, 0)}
       </td>
-      <td className="py-4 px-3 whitespace-nowrap text-right">
-        <div className="font-mono">{formatCurrency(crypto.volume24h, 0)}</div>
-        <div className="text-neutral-300 text-xs">{formatLargeNumber(crypto.volume24h / crypto.price)} {crypto.symbol}</div>
+      <td className="text-right">
+        <div>{formatCurrency(crypto.volume24h, 0)}</div>
+        <div className="text-xs text-gray-500">{formatLargeNumber(crypto.volume24h / crypto.price)} {crypto.symbol}</div>
       </td>
-      <td className="py-4 px-3 whitespace-nowrap text-right">
-        <div className="font-mono">{formatLargeNumber(crypto.circulatingSupply)} {crypto.symbol}</div>
+      <td className="text-right">
+        <div>{formatLargeNumber(crypto.circulatingSupply)} {crypto.symbol}</div>
         {crypto.maxSupply ? (
-          <div className="text-neutral-300 text-xs">Max: {formatLargeNumber(crypto.maxSupply)}</div>
+          <div className="text-xs text-gray-500">Max: {formatLargeNumber(crypto.maxSupply)}</div>
         ) : (
-          <div className="text-neutral-300 text-xs">Max: ∞</div>
+          <div className="text-xs text-gray-500">Max: ∞</div>
         )}
       </td>
-      <td className="py-4 px-3 whitespace-nowrap w-48">
-        <div className="w-40 h-12">
-          <SparklineChart trend={crypto.sparkline} color={percent7d.className.includes('positive') ? '#16C784' : '#EA3943'} />
+      <td>
+        <div className="w-40">
+          <SparklineChart trend={crypto.sparkline} color={percent7d.className.includes('success') ? '#16C784' : '#EA3943'} />
         </div>
       </td>
     </tr>

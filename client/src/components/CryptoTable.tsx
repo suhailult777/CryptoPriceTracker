@@ -9,27 +9,27 @@ const CryptoTable = () => {
 
   return (
     <div className="overflow-x-auto pb-4 crypto-table-container">
-      <table className="min-w-full bg-white rounded-lg shadow" id="crypto-table">
-        <thead className="bg-neutral-100 sticky top-0">
+      <table className="min-w-full bg-white" id="crypto-table">
+        <thead>
           <tr>
-            <th className="py-3 pl-4 pr-3 text-left text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap sticky left-0 bg-neutral-100 z-10">
+            <th>
               <span className="sr-only">Favorite</span>
             </th>
-            <th className="py-3 px-3 text-left text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               #
             </th>
-            <th className="py-3 px-3 text-left text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Name
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Price
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               1h %
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -39,12 +39,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               24h %
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -54,12 +54,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               7d %
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -69,12 +69,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Market Cap
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -84,12 +84,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Volume(24h)
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -99,12 +99,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Circulating Supply
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <button className="inline-flex items-center ml-1 text-neutral-200" type="button">
+                    <button className="inline-flex items-center ml-1" type="button">
                       <Info className="h-3 w-3" />
                     </button>
                   </TooltipTrigger>
@@ -114,12 +114,12 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th className="py-3 px-3 text-right text-xs font-medium text-neutral-300 uppercase tracking-wider whitespace-nowrap">
+            <th>
               Last 7 Days
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-neutral-100">
+        <tbody>
           {assets.map((crypto) => (
             <CryptoTableRow key={crypto.id} crypto={crypto} />
           ))}
