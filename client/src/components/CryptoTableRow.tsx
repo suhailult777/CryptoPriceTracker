@@ -8,9 +8,10 @@ import { Star } from 'lucide-react';
 
 interface CryptoTableRowProps {
   crypto: CryptoAsset;
+  isMobile?: boolean;
 }
 
-const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
+const CryptoTableRow = ({ crypto, isMobile = false }: CryptoTableRowProps) => {
   const dispatch = useDispatch();
   const [priceFlash, setPriceFlash] = useState<'up' | 'down' | null>(null);
   const prevPriceRef = useRef(crypto.price);
@@ -53,7 +54,7 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
   
   return (
     <tr className="crypto-row" data-id={crypto.id}>
-      <td>
+      <td className="hidden sm:table-cell">
         <button
           onClick={handleToggleStar}
           className="star-button focus:outline-none"
@@ -65,7 +66,7 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
           />
         </button>
       </td>
-      <td>
+      <td className="hidden sm:table-cell">
         {crypto.rank}
       </td>
       <td>
@@ -73,37 +74,37 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
           <img 
             src={logoUrl} 
             alt={crypto.name} 
-            className="w-8 h-8 mr-3"
+            className="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3"
             onError={(e) => {
               (e.target as HTMLImageElement).src = fallbackLogoUrl;
             }}
           />
           <div>
-            <div className="font-medium">{crypto.name}</div>
+            <div className="font-medium text-sm sm:text-base">{crypto.name}</div>
             <div className="text-xs text-gray-500">{crypto.symbol}</div>
           </div>
         </div>
       </td>
-      <td className={`text-right font-medium ${getPriceFlashClass()}`} data-field="price">
+      <td className={`text-right font-medium text-sm sm:text-base ${getPriceFlashClass()}`} data-field="price">
         {formatCurrency(crypto.price)}
       </td>
-      <td className={`text-right ${percent1h.className}`} data-field="percentChange1h">
+      <td className={`hidden md:table-cell text-right text-sm sm:text-base ${percent1h.className}`} data-field="percentChange1h">
         {percent1h.value}
       </td>
-      <td className={`text-right ${percent24h.className}`} data-field="percentChange24h">
+      <td className={`text-right text-sm sm:text-base ${percent24h.className}`} data-field="percentChange24h">
         {percent24h.value}
       </td>
-      <td className={`text-right ${percent7d.className}`} data-field="percentChange7d">
+      <td className={`hidden lg:table-cell text-right text-sm sm:text-base ${percent7d.className}`} data-field="percentChange7d">
         {percent7d.value}
       </td>
-      <td className="text-right" data-field="marketCap">
+      <td className="hidden md:table-cell text-right text-sm sm:text-base" data-field="marketCap">
         {formatCurrency(crypto.marketCap, 0)}
       </td>
-      <td className="text-right">
+      <td className="hidden lg:table-cell text-right text-sm sm:text-base">
         <div>{formatCurrency(crypto.volume24h, 0)}</div>
         <div className="text-xs text-gray-500">{formatLargeNumber(crypto.volume24h / crypto.price)} {crypto.symbol}</div>
       </td>
-      <td className="text-right">
+      <td className="hidden xl:table-cell text-right text-sm sm:text-base">
         <div>{formatLargeNumber(crypto.circulatingSupply)} {crypto.symbol}</div>
         {crypto.maxSupply ? (
           <div className="text-xs text-gray-500">Max: {formatLargeNumber(crypto.maxSupply)}</div>
@@ -111,8 +112,8 @@ const CryptoTableRow = ({ crypto }: CryptoTableRowProps) => {
           <div className="text-xs text-gray-500">Max: ∞</div>
         )}
       </td>
-      <td>
-        <div className="w-40">
+      <td className="hidden xl:table-cell">
+        <div className="w-24 sm:w-40">
           <SparklineChart trend={crypto.sparkline} color={percent7d.className.includes('success') ? '#16C784' : '#EA3943'} />
         </div>
       </td>

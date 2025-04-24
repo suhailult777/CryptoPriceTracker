@@ -7,7 +7,7 @@ const Home = () => {
   useSimulation();
   
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className="w-full mx-auto px-2 py-4 sm:px-4 md:px-6 lg:px-8 xl:max-w-7xl">
       <PageHeader />
       <CryptoTable />
     </div>

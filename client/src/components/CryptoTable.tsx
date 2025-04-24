@@ -3,19 +3,21 @@ import { RootState } from "@/store/store";
 import CryptoTableRow from "./CryptoTableRow";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const CryptoTable = () => {
   const { assets } = useSelector((state: RootState) => state.crypto);
+  const isMobile = useIsMobile();
 
   return (
-    <div className="overflow-x-auto pb-4 crypto-table-container">
+    <div className="overflow-x-auto pb-4 crypto-table-container rounded-md shadow-sm border border-gray-100">
       <table className="min-w-full bg-white" id="crypto-table">
         <thead>
           <tr>
-            <th>
+            <th className="hidden sm:table-cell">
               <span className="sr-only">Favorite</span>
             </th>
-            <th>
+            <th className="hidden sm:table-cell">
               #
             </th>
             <th>
@@ -24,7 +26,7 @@ const CryptoTable = () => {
             <th>
               Price
             </th>
-            <th>
+            <th className="hidden md:table-cell">
               1h %
               <TooltipProvider>
                 <Tooltip>
@@ -54,7 +56,7 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th>
+            <th className="hidden lg:table-cell">
               7d %
               <TooltipProvider>
                 <Tooltip>
@@ -69,7 +71,7 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th>
+            <th className="hidden md:table-cell">
               Market Cap
               <TooltipProvider>
                 <Tooltip>
@@ -84,7 +86,7 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th>
+            <th className="hidden lg:table-cell">
               Volume(24h)
               <TooltipProvider>
                 <Tooltip>
@@ -99,7 +101,7 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th>
+            <th className="hidden xl:table-cell">
               Circulating Supply
               <TooltipProvider>
                 <Tooltip>
@@ -114,14 +116,14 @@ const CryptoTable = () => {
                 </Tooltip>
               </TooltipProvider>
             </th>
-            <th>
+            <th className="hidden xl:table-cell">
               Last 7 Days
             </th>
           </tr>
         </thead>
         <tbody>
           {assets.map((crypto) => (
-            <CryptoTableRow key={crypto.id} crypto={crypto} />
+            <CryptoTableRow key={crypto.id} crypto={crypto} isMobile={isMobile} />
           ))}
         </tbody>
       </table>

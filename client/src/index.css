@@ -98,9 +98,17 @@
   background-color: white;
   font-weight: 500;
   color: #666;
-  padding: 10px 16px;
+  padding: 8px 10px;
   text-align: right;
   border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+
+@media (min-width: 640px) {
+  #crypto-table thead th {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
 }
 
 #crypto-table thead th:first-child,
@@ -118,9 +126,24 @@
 }
 
 .crypto-row td {
-  padding: 16px;
-  font-size: 15px;
+  padding: 10px;
+  font-size: 13px;
   vertical-align: middle;
+}
+
+@media (min-width: 640px) {
+  .crypto-row td {
+    padding: 16px;
+    font-size: 15px;
+  }
+}
+
+/* Add responsive container */
+.crypto-table-container {
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
 }
 
 /* Star button styling */
