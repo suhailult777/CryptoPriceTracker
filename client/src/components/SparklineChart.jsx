@@ -1,9 +1,4 @@
-interface SparklineChartProps {
-  trend: string;
-  color: string;
-}
-
-const SparklineChart = ({ trend, color }: SparklineChartProps) => {
+const SparklineChart = ({ trend, color }) => {
   let path = '';
   
   // Generate SVG path based on trend to mimic the example chart

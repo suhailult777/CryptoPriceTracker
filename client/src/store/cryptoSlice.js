@@ -1,28 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface CryptoAsset {
-  id: string;
-  rank: number;
-  name: string;
-  symbol: string;
-  price: number;
-  percentChange1h: number;
-  percentChange24h: number;
-  percentChange7d: number;
-  marketCap: number;
-  volume24h: number;
-  circulatingSupply: number;
-  maxSupply: number | null;
-  sparkline: 'up' | 'down' | 'neutral' | 'volatile';
-  starred: boolean;
-}
-
-interface CryptoState {
-  assets: CryptoAsset[];
-}
+import { createSlice } from '@reduxjs/toolkit';
 
 // Initial sample crypto data
-const initialState: CryptoState = {
+const initialState = {
   assets: [
     {
       id: 'bitcoin',
@@ -123,21 +102,11 @@ const initialState: CryptoState = {
   ]
 };
 
-interface PriceUpdate {
-  id: string;
-  price: number;
-  percentChange1h: number;
-  percentChange24h: number;
-  percentChange7d: number;
-  volume24h: number;
-  sparkline?: 'up' | 'down' | 'neutral' | 'volatile';
-}
-
 const cryptoSlice = createSlice({
   name: 'crypto',
   initialState,
   reducers: {
-    updateCryptoPrices: (state, action: PayloadAction<PriceUpdate[]>) => {
+    updateCryptoPrices: (state, action) => {
       action.payload.forEach(update => {
         const index = state.assets.findIndex(crypto => crypto.id === update.id);
         if (index !== -1) {
@@ -148,7 +117,7 @@ const cryptoSlice = createSlice({
         }
       });
     },
-    toggleStar: (state, action: PayloadAction<string>) => {
+    toggleStar: (state, action) => {
       const index = state.assets.findIndex(crypto => crypto.id === action.payload);
       if (index !== -1) {
         state.assets[index].starred = !state.assets[index].starred;

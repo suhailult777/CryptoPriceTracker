@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCryptoPrices } from '@/store/cryptoSlice';
-import { RootState } from '@/store/store';
 
 // Helper to generate random price changes
-const generateRandomChange = (baseValue: number, percentageRange = 0.5) => {
+const generateRandomChange = (baseValue, percentageRange = 0.5) => {
   const changePercent = (Math.random() * percentageRange * 2) - percentageRange;
   return baseValue * (1 + changePercent / 100);
 };
@@ -12,7 +11,7 @@ const generateRandomChange = (baseValue: number, percentageRange = 0.5) => {
 // Simulation hook
 const useSimulation = () => {
   const dispatch = useDispatch();
-  const { assets } = useSelector((state: RootState) => state.crypto);
+  const { assets } = useSelector((state) => state.crypto);
   
   useEffect(() => {
     const simulateRealTimeUpdates = () => {
@@ -22,7 +21,7 @@ const useSimulation = () => {
       if (assetsToUpdate.length === 0) return;
       
       const updates = assetsToUpdate.map(assetId => {
-        const asset = assets.find(a => a.id === assetId)!;
+        const asset = assets.find(a => a.id === assetId);
         
         // Generate random changes
         const newPrice = generateRandomChange(asset.price, 1);

@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
 import CryptoTableRow from "./CryptoTableRow";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const CryptoTable = () => {
-  const { assets } = useSelector((state: RootState) => state.crypto);
+  const { assets } = useSelector((state) => state.crypto);
   const isMobile = useIsMobile();
 
   return (

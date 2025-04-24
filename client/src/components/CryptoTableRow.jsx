@@ -2,18 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleStar } from '@/store/cryptoSlice';
 import { formatCurrency, formatLargeNumber, formatPercentage } from '@/lib/utils/formatters';
-import { CryptoAsset } from '@/store/cryptoSlice';
 import SparklineChart from './SparklineChart';
 import { Star } from 'lucide-react';
 
-interface CryptoTableRowProps {
-  crypto: CryptoAsset;
-  isMobile?: boolean;
-}
-
-const CryptoTableRow = ({ crypto, isMobile = false }: CryptoTableRowProps) => {
+const CryptoTableRow = ({ crypto, isMobile = false }) => {
   const dispatch = useDispatch();
-  const [priceFlash, setPriceFlash] = useState<'up' | 'down' | null>(null);
+  const [priceFlash, setPriceFlash] = useState(null);
   const prevPriceRef = useRef(crypto.price);
   
   useEffect(() => {
@@ -76,7 +70,7 @@ const CryptoTableRow = ({ crypto, isMobile = false }: CryptoTableRowProps) => {
             alt={crypto.name} 
             className="w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = fallbackLogoUrl;
+              e.target.src = fallbackLogoUrl;
             }}
           />
           <div>
